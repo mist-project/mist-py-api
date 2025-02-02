@@ -27,9 +27,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     # added
-    'corsheaders',
+    "corsheaders",
     "rest_framework",
     "rest_framework_simplejwt",
     "rest_framework_simplejwt.token_blacklist",
@@ -38,7 +37,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -74,12 +73,12 @@ WSGI_APPLICATION = "api.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",  # Assuming you"re using PostgreSQL
-        "NAME": os.getenv("DATABASE_NAME"),  # Database name
-        "USER": os.getenv("DATABASE_USER"),  # Username
-        "PASSWORD": os.getenv("DATABASE_PASSWORD"),  # Password
-        "HOST": os.getenv("DATABASE_HOST", "localhost"),  # Host, default to "localhost" if not set
-        "PORT": os.getenv("DATABASE_PORT", "5432"),  # Port, default to "5432" if not set
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("DATABASE_NAME"),
+        "USER": os.getenv("DATABASE_USER"),
+        "PASSWORD": os.getenv("DATABASE_PASSWORD"),
+        "HOST": os.getenv("DATABASE_HOST", "localhost"),
+        "PORT": os.getenv("DATABASE_PORT", "5432"),
     }
 }
 # Auth user model
@@ -143,7 +142,7 @@ SIMPLE_JWT = {
     "ALGORITHM": "HS256",
     "SIGNING_KEY": os.getenv("APP_JWT_SECRET_KEY"),
     "AUDIENCE": os.getenv("APP_JWT_AUDIENCES").split(","),
-    "ISSUER": os.getenv("APP_JWT_ISSUER")
+    "ISSUER": os.getenv("APP_JWT_ISSUER"),
 }
 
 # TODO: fix me to proper safe cors settings
