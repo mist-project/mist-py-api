@@ -1,5 +1,7 @@
 import uuid
 
+from rest_framework_simplejwt.tokens import AccessToken
+
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 
@@ -31,3 +33,6 @@ class User(AbstractBaseUser):
 
     def __str__(self):
         return self.email
+
+    def get_jwt_access_token(self):
+        return AccessToken.for_user(self)
