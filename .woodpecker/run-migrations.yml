@@ -1,0 +1,33 @@
+when:
+  - event: manual
+
+steps:
+  - name: Fetch and Initialize Credentials
+    when:
+      - evaluate: 'CI_ACTION == "true"'
+    image: registry.mist-project.app/mist-shared/alpine-ci:latest
+    environment:
+      OP_SERVICE_ACCOUNT_TOKEN:
+        from_secret: OP_TOKEN
+      OP_VAULT:
+        from_secret: OP_VAULT
+      TENANT_ACCOUNT_ID: "4wccsugzybkttewdtm2zujm5gu"
+      SERVICE_ACCOUNT_ID: "dtq7g2fd6xenfh44mwp56hohtq"
+
+    commands:
+      - chmod +x helpers/fetch_creds_op.sh
+      - ./helpers/fetch_creds_op.sh
+
+  - name: Run migrations in tenant
+    when:
+      - evaluate: 'CI_ACTION == "true"'
+    image: registry.mist-project.app/mist-shared/alpine-ci:latest
+    environment:
+      ANSIBLE_HOST_KEY_CHECKING: False
+    commands:
+      - source .tmpenvs
+      - |
+        ansible-playbook -i ansible/inventory/hosts.ini \
+          ansible/playbooks/perform-migrations.yml \
+          --extra-vars "ansible_ssh_private_key_file=key.pem" \
+          --extra-vars "ansible_user=$TENANT_USERNAME" \

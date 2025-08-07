@@ -12,9 +12,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("APP_SECRET_KEY")
 
-DEBUG = True if os.getenv("APP_DEBUG") == "true" else False
+DEBUG = True
 
-ALLOWED_HOSTS = []
+# TODO: TEMPORARY SETTING, change to proper allowed hosts
+ALLOWED_HOSTS = ["192.168.0.21", "dev-auth.mist-project.app", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -135,7 +136,6 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-  
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),  # TODO: lower this to 30 mins
     "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
     "ROTATE_REFRESH_TOKENS": True,

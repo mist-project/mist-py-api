@@ -14,9 +14,9 @@ DATABASE_NAME=$(op item get $SERVICE_ACCOUNT_ID --vault "$OP_VAULT" --fields DAT
 
 APP_SECRET_KEY=$(op item get $SERVICE_ACCOUNT_ID --vault "$OP_VAULT" --fields APP_SECRET_KEY --reveal)
 
-MIST_API_JWT_SECRET_KEY=$(op item get $SERVICE_ACCOUNT_ID --vault "$OP_VAULT" --fields MIST_API_JWT_SECRET_KEY --reveal)
-MIST_API_JWT_AUDIENCES=$(op item get $SERVICE_ACCOUNT_ID --vault "$OP_VAULT" --fields MIST_API_JWT_AUDIENCES --reveal)
-MIST_API_JWT_ISSUER=$(op item get $SERVICE_ACCOUNT_ID --vault "$OP_VAULT" --fields MIST_API_JWT_ISSUER --reveal)
+APP_JWT_SECRET_KEY=$(op item get $SERVICE_ACCOUNT_ID --vault "$OP_VAULT" --fields APP_JWT_SECRET_KEY --reveal)
+APP_JWT_AUDIENCES=$(op item get $SERVICE_ACCOUNT_ID --vault "$OP_VAULT" --fields APP_JWT_AUDIENCES --reveal)
+APP_JWT_ISSUER=$(op item get $SERVICE_ACCOUNT_ID --vault "$OP_VAULT" --fields APP_JWT_ISSUER --reveal)
 
 APP_PORT=$(op item get $SERVICE_ACCOUNT_ID --vault "$OP_VAULT" --fields APP_PORT --reveal)
 
@@ -48,9 +48,9 @@ echo "export DATABASE_NAME=$DATABASE_NAME" >> ".tmpenvs"
 
 echo "export APP_SECRET_KEY=$APP_SECRET_KEY" >> ".tmpenvs"
 
-echo "export MIST_API_JWT_SECRET_KEY=\"$MIST_API_JWT_SECRET_KEY\"" >> ".tmpenvs"
-echo "export MIST_API_JWT_AUDIENCES=\"$MIST_API_JWT_AUDIENCES\"" >> ".tmpenvs"
-echo "export MIST_API_JWT_ISSUER=\"$MIST_API_JWT_ISSUER\"" >> ".tmpenvs"
+echo "export APP_JWT_SECRET_KEY=\"$APP_JWT_SECRET_KEY\"" >> ".tmpenvs"
+echo "export APP_JWT_AUDIENCES=\"$APP_JWT_AUDIENCES\"" >> ".tmpenvs"
+echo "export APP_JWT_ISSUER=\"$APP_JWT_ISSUER\"" >> ".tmpenvs"
 
 echo "export APP_PORT=$APP_PORT" >> ".tmpenvs"
 

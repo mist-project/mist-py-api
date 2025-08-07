@@ -1,0 +1,15 @@
+- name: Deploy Mist IO Application
+  hosts: mist-service
+  gather_facts: false
+  become: true
+
+  tasks:
+    - name: Run migration
+      community.docker.docker_container_exec:
+        name: mist_auth
+        command: uv run python manage.py migrate
+      register: command_output
+
+    - name: Print the command output
+      ansible.builtin.debug:
+        var: command_output.stdout

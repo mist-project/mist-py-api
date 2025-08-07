@@ -51,7 +51,7 @@ steps:
           --extra-vars "DATABASE_HOST=$DATABASE_HOST" \
           --extra-vars "DATABASE_PORT=$DATABASE_PORT" \
           --extra-vars "DATABASE_NAME=$DATABASE_NAME" \
-          --extra-vars "MIST_API_JWT_SECRET_KEY=$MIST_API_JWT_SECRET_KEY" \
-          --extra-vars "MIST_API_JWT_AUDIENCES=$MIST_API_JWT_AUDIENCES" \
-          --extra-vars "MIST_API_JWT_ISSUER=$MIST_API_JWT_ISSUER" \
+          --extra-vars "APP_JWT_SECRET_KEY=$APP_JWT_SECRET_KEY" \
+          --extra-vars "APP_JWT_AUDIENCES=$APP_JWT_AUDIENCES" \
+          --extra-vars "APP_JWT_ISSUER=$APP_JWT_ISSUER" \
           --extra-vars "APP_SECRET_KEY=$APP_SECRET_KEY" \
