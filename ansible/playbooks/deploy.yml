@@ -1,0 +1,30 @@
+- name: Deploy Mist IO Application
+  hosts: mist-service
+  gather_facts: false
+  become: true
+
+  tasks:
+    - name: Pull latest mist-auth image
+      community.docker.docker_image:
+        name: registry.mist-project.app/mist-auth:latest
+        source: pull
+
+    - name: Run Docker container
+      community.docker.docker_container:
+        name: mist_auth
+        image: registry.mist-project.app/mist-auth:latest
+        state: started
+        ports:
+          - "{{ APP_PORT }}:{{ APP_PORT }}"
+        restart_policy: always # container restarts on failure
+        env:
+          DATABASE_USER: "{{ DATABASE_USER }}"
+          DATABASE_PASSWORD: "{{ DATABASE_PASSWORD }}"
+          DATABASE_HOST: "{{ DATABASE_HOST }}"
+          DATABASE_PORT: "{{ DATABASE_PORT }}"
+          DATABASE_NAME: "{{ DATABASE_NAME }}"
+          APP_SECRET_KEY: "{{ APP_SECRET_KEY }}"
+          MIST_API_JWT_SECRET_KEY: "{{ MIST_API_JWT_SECRET_KEY }}"
+          MIST_API_JWT_AUDIENCES: "{{ MIST_API_JWT_AUDIENCES }}"
+          MIST_API_JWT_ISSUER: "{{ MIST_API_JWT_ISSUER }}"
+          APP_PORT: "{{ APP_PORT }}"
