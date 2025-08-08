@@ -26,9 +26,7 @@ class RegisterView(generics.CreateAPIView):
             with grpc.insecure_channel("localhost:4000") as channel:
                 stub = appuser_pb2_grpc.AppuserServiceStub(channel)
                 metadata = [("authorization", f"Bearer {str(user.get_jwt_access_token())}")]
-                stub.CreateAppuser(
-                    appuser_pb2.CreateAppuserRequest(username=user.email, id=str(user.pk)), metadata=metadata
-                )
+                stub.Create(appuser_pb2.CreateRequest(username=user.email, id=str(user.pk)), metadata=metadata)
 
             headers = self.get_success_headers(serializer.data)
 
