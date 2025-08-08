@@ -12,11 +12,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("APP_SECRET_KEY")
 
+# settings.py
 DEBUG = True
 
-# TODO: TEMPORARY SETTING, change to proper allowed hosts
-ALLOWED_HOSTS = ["192.168.0.21", "dev-auth.mist-project.app", "localhost", "127.0.0.1"]
-
+# Allows all hosts when running in a development container
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 

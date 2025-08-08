@@ -4,7 +4,7 @@ when:
 steps:
   - name: Fetch and Initialize Credentials
     when:
-      - evaluate: 'CI_ACTION == "true"'
+      - evaluate: 'CI_ACTION == "MIGRATE"'
     image: registry.mist-project.app/mist-shared/alpine-ci:latest
     environment:
       OP_SERVICE_ACCOUNT_TOKEN:
@@ -20,7 +20,7 @@ steps:
 
   - name: Run migrations in tenant
     when:
-      - evaluate: 'CI_ACTION == "true"'
+      - evaluate: 'CI_ACTION == "MIGRATE"'
     image: registry.mist-project.app/mist-shared/alpine-ci:latest
     environment:
       ANSIBLE_HOST_KEY_CHECKING: False

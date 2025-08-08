@@ -33,7 +33,8 @@ COPY --from=deps /app/.venv /app/.venv
 
 # App env + venv PATH
 ENV PATH="/app/.venv/bin:${PATH}" \
-    APP_PORT=4001
+    APP_PORT=4001 \
+    DJANGO_SETTINGS_MODULE="api.settings"
 
 # Copy source
 COPY src/ ./src
@@ -43,4 +44,4 @@ WORKDIR /app
 
 EXPOSE 4001
 # Use shell so ${APP_PORT} expands; bind to 0.0.0.0
-CMD sh -c "python src/manage.py runserver 0.0.0.0:${APP_PORT}"
+CMD ["python", "src/manage.py", "runserver", "0.0.0.0:4001"]
