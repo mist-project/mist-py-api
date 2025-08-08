@@ -11,6 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 SECRET_KEY = os.getenv("APP_SECRET_KEY")
+MIST_BACKEND_APP_URL = os.getenv("MIST_BACKEND_APP_URL", "localhost:4000")
 
 # settings.py
 DEBUG = True

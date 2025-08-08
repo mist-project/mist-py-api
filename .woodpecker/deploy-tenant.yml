@@ -55,3 +55,4 @@ steps:
           --extra-vars "APP_JWT_AUDIENCES=$APP_JWT_AUDIENCES" \
           --extra-vars "APP_JWT_ISSUER=$APP_JWT_ISSUER" \
           --extra-vars "APP_SECRET_KEY=$APP_SECRET_KEY" \
+          --extra-vars "MIST_BACKEND_APP_URL=$MIST_BACKEND_APP_URL" \

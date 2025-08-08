@@ -20,6 +20,8 @@ APP_JWT_ISSUER=$(op item get $SERVICE_ACCOUNT_ID --vault "$OP_VAULT" --fields AP
 
 APP_PORT=$(op item get $SERVICE_ACCOUNT_ID --vault "$OP_VAULT" --fields APP_PORT --reveal)
 
+MIST_BACKEND_APP_URL=$(op item get $SERVICE_ACCOUNT_ID --vault "$OP_VAULT" --fields MIST_BACKEND_APP_URL --reveal)
+
 # Define file paths
 KEY_FILE="key.pem"
 INVENTORY_FILE="ansible/inventory/hosts.ini"
@@ -53,4 +55,5 @@ echo "export APP_JWT_AUDIENCES=\"$APP_JWT_AUDIENCES\"" >> ".tmpenvs"
 echo "export APP_JWT_ISSUER=\"$APP_JWT_ISSUER\"" >> ".tmpenvs"
 
 echo "export APP_PORT=$APP_PORT" >> ".tmpenvs"
+echo "export MIST_BACKEND_APP_URL=\"$MIST_BACKEND_APP_URL\"" >> ".tmpenvs"
 

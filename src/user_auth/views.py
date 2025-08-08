@@ -1,6 +1,7 @@
 import grpc
 
 from django.db import transaction
+from django.conf import settings
 from rest_framework import generics, status
 from rest_framework.response import Response
 
@@ -23,7 +24,7 @@ class RegisterView(generics.CreateAPIView):
             user = User.objects.get(pk=serializer.data["id"])
 
             # # TODO replace localhost:4000 with an env variable
-            with grpc.insecure_channel("localhost:4000") as channel:
+            with grpc.insecure_channel(settings.MIST_BACKEND_APP_URL) as channel:
                 stub = appuser_pb2_grpc.AppuserServiceStub(channel)
                 metadata = [("authorization", f"Bearer {str(user.get_jwt_access_token())}")]
                 stub.Create(appuser_pb2.CreateRequest(username=user.email, id=str(user.pk)), metadata=metadata)
